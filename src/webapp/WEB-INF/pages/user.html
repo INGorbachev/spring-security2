@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+
+<h1>User page </h1>
+<div th:insert="logout :: logout"></div>
+<br>
+<div th:object="${user}" class="User">
+    ID: <span th:utext="${user.id}"></span><br>
+    firstName: <span th:utext="${user.firstName}"></span><br>
+    lastName: <span th:utext="${user.lastName}"></span><br>
+    Email: <span th:utext="${user.email}"></span><br>
+</div>
+<br>
+
+<div sec:authorize="hasRole('ADMIN')">
+    <form method="get" th:action="@{/admin}">
+        <input type="submit" value="Admin page">
+    </form>
+</div>
+
+</body>
+</html>
